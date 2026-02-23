@@ -2,15 +2,18 @@
   <img src="https://raw.githubusercontent.com/mayswind/AriaNg-Native/master/assets/AriaNg.ico" />
 </p>
 
-# [Aria2](https://github.com/aria2/aria2) + [AriaNg webui](https://github.com/mayswind/AriaNg) inside a [docker container](https://hub.docker.com/r/hurlenko/aria2-ariang)
+# [Aria2](https://github.com/aria2/aria2) + [AriaNg webui](https://github.com/mayswind/AriaNg) inside a [docker container](https://hub.docker.com/r/altonhe/aria2-ariang)
 
-[![Latest Github release](https://img.shields.io/github/release/hurlenko/aria2-ariang-docker.svg)](https://github.com/hurlenko/aria2-ariang-docker/releases/latest)
-[![Image size](https://img.shields.io/docker/image-size/hurlenko/aria2-ariang/latest)](https://hub.docker.com/r/hurlenko/aria2-ariang/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/hurlenko/aria2-ariang.svg)](https://hub.docker.com/r/hurlenko/aria2-ariang/)
-[![Docker Stars](https://img.shields.io/docker/stars/hurlenko/aria2-ariang.svg)](https://hub.docker.com/r/hurlenko/aria2-ariang/)
+[![Latest Github release](https://img.shields.io/github/release/altonhe/aria2-ariang-docker.svg)](https://github.com/altonhe/aria2-ariang-docker/releases/latest)
+[![Image size](https://img.shields.io/docker/image-size/altonhe/aria2-ariang/latest)](https://hub.docker.com/r/altonhe/aria2-ariang/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/altonhe/aria2-ariang.svg)](https://hub.docker.com/r/altonhe/aria2-ariang/)
+[![Docker Stars](https://img.shields.io/docker/stars/altonhe/aria2-ariang.svg)](https://hub.docker.com/r/altonhe/aria2-ariang/)
 
-- **[Github](https://github.com/hurlenko/aria2-ariang-docker)**
-- **[Dockerhub](https://hub.docker.com/r/hurlenko/aria2-ariang/)**
+- **[Github](https://github.com/altonhe/aria2-ariang-docker)**
+- **[Dockerhub](https://hub.docker.com/r/altonhe/aria2-ariang/)**
+
+# Unofficial fork from https://github.com/hurlenko/aria2-ariang-docker
+# I claim no ownership of this project
 
 ## Introduction
 
@@ -55,7 +58,7 @@ Please visit [http://ariang.mayswind.net/latest](http://ariang.mayswind.net/late
 ### Docker
 
 ```bash
-docker run -d --name ariang -p 8080:8080 hurlenko/aria2-ariang
+docker run -d --name ariang -p 8080:8080 altonhe/aria2-ariang
 ```
 
 To run as a different user and to map custom volume locations use:
@@ -70,7 +73,7 @@ docker run -d \
     -e PGID=1000 \
     -e ARIA2RPCPORT=443 \
     -e RPC_SECRET=NOBODYKNOWSME \
-    hurlenko/aria2-ariang
+    altonhe/aria2-ariang
 ```
 
 ### docker-compose
@@ -155,8 +158,18 @@ id username
 
 ## Building
 
+`ARIANG_VERSION` is a required build argument. Find the latest release tag at [AriaNg releases](https://github.com/mayswind/AriaNg/releases).
+
 ```bash
-git clone https://github.com/hurlenko/aria2-ariang-docker
+git clone https://github.com/altonhe/aria2-ariang-docker
 cd aria2-ariang-docker
-docker build -t hurlenko/aria2-ariang .
+docker build --build-arg ARIANG_VERSION=1.3.13 -t altonhe/aria2-ariang .
 ```
+
+### Testing the built image
+
+```bash
+docker run -d --name ariang-test -p 8080:8080 altonhe/aria2-ariang
+```
+
+Then open `http://localhost:8080` — the AriaNg UI should load.
